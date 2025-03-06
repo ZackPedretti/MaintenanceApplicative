@@ -1,9 +1,9 @@
 package com.gildedrose;
 
 class GildedRose {
-    public static String AGED_BRIE = "Aged Brie";
-    public static String SULFURAS = "Sulfuras, Hand of Ragnaros";
-    public static String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    public final static String AGED_BRIE = "Aged Brie";
+    public final static String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    public final static String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -12,19 +12,18 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (SULFURAS.equals(item.name)) {
-                continue;
+            switch (item.name) {
+                case AGED_BRIE:
+                    handleAgedBrieUpdate(item);
+                    break;
+                case BACKSTAGE_PASSES:
+                    handleBackstagePassesUpdate(item);
+                    break;
+                case SULFURAS:
+                    break;
+                default:
+                    handleNormalItem(item);
             }
-            if (AGED_BRIE.equals(item.name)) {
-                handleAgedBrieUpdate(item);
-                continue;
-            }
-            if (BACKSTAGE_PASSES.equals(item.name)) {
-                handleBackstagePassesUpdate(item);
-                continue;
-            }
-
-            handleNormalItem(item);
         }
     }
 
