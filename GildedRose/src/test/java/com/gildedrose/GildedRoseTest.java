@@ -73,7 +73,20 @@ class GildedRoseTest {
     }
 
     /**
-     * Quality of aged brie raise drop by 1 when it is updated
+     * Quality of item should not be bellow 0
+     */
+    @Test
+    @DisplayName("Update quality of item when it is 0 and sell-in day is passed")
+    void updateQualityOfItemWhenItIs0AndSellInDayIsPassed() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Wooden sword", -1, 0)
+        });
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+    }
+
+    /**
+     * Quality of aged brie should raise by 1 when it is updated
      */
     @Test
     @DisplayName("Update quality of aged brie")
@@ -83,6 +96,32 @@ class GildedRoseTest {
         });
         app.updateQuality();
         assertEquals(21, app.items[0].quality);
+    }
+
+    /**
+     * Quality of aged brie should raise by 2 when it is updated and when sell-in day is negative
+     */
+    @Test
+    @DisplayName("Update quality of aged brie with sell-in negative")
+    void updateQualityOfAgedBrieSellInNegative() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Aged Brie", -1, 20)
+        });
+        app.updateQuality();
+        assertEquals(22, app.items[0].quality);
+    }
+
+    /**
+     * Quality of aged brie should not change when it is updated and when sell-in day is negative and quality is 50
+     */
+    @Test
+    @DisplayName("Update quality of aged brie with sell-in negative")
+    void updateQualityOfAgedBrieSellInNegativeAndQualityIs50() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Aged Brie", -1, 50)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
     }
 
     /**
@@ -106,6 +145,19 @@ class GildedRoseTest {
     void updateQualityOfSulfuras() {
         GildedRose app = new GildedRose(new Item[]{
                 new Item("Sulfuras, Hand of Ragnaros", 10, 20)
+        });
+        app.updateQuality();
+        assertEquals(20, app.items[0].quality);
+    }
+
+    /**
+     * Quality of Sulfuras should not be changed
+     */
+    @Test
+    @DisplayName("Update quality of Sulfuras when quality is 0 and sell-in day is passed")
+    void updateQualityOfSulfurasSellInDayIsPassed() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Sulfuras, Hand of Ragnaros", -1, 20)
         });
         app.updateQuality();
         assertEquals(20, app.items[0].quality);
@@ -174,5 +226,83 @@ class GildedRoseTest {
         });
         app.updateQuality();
         assertEquals(0, app.items[0].quality);
+    }
+
+    /**
+     * Quality of backstage passes should not change if it is 50
+     */
+    @Test
+    @DisplayName("Update quality of backstage passes when sell-in day is above 10 and quality is 50")
+    void updateQualityOfBackstagePassesWhenSellInIsAbove10AndQualityIs50() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
+    /**
+     * Quality of backstage passes should not change if it is 50
+     */
+    @Test
+    @DisplayName("Update quality of backstage passes when sell-in day is between 5 and 10 and quality is 50")
+    void updateQualityOfBackstagePassesWhenSellInIsBetween5And10AndQualityIs50() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Backstage passes to a TAFKAL80ETC concert", 6, 50)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
+    /**
+     * Quality of backstage passes should not change if it is 50
+     */
+    @Test
+    @DisplayName("Update quality of backstage passes when sell-in day is between 5 and 0 and quality is 50")
+    void updateQualityOfBackstagePassesWhenSellInIsBetween5And0AndQualityIs50() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Backstage passes to a TAFKAL80ETC concert", 4, 50)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
+    /**
+     * Quality of backstage passes should not go above 50 if it goes up by 2 and quality is 49
+     */
+    @Test
+    @DisplayName("Update quality of backstage passes when sell-in day is between 5 and 10 and quality is 49")
+    void updateQualityOfBackstagePassesWhenSellInIsBetween5And10AndQualityIs49() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Backstage passes to a TAFKAL80ETC concert", 6, 49)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
+    /**
+     * Quality of backstage passes should not go above 50 if it goes up by 3 and quality is 49
+     */
+    @Test
+    @DisplayName("Update quality of backstage passes when sell-in day is between 5 and 0 and quality is 49")
+    void updateQualityOfBackstagePassesWhenSellInIsBetween5And0AndQualityIs49() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Backstage passes to a TAFKAL80ETC concert", 4, 49)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
+    }
+
+    /**
+     * Quality of backstage passes should not go above 50 if it goes up by 3 and quality is 48
+     */
+    @Test
+    @DisplayName("Update quality of backstage passes when sell-in day is between 5 and 0 and quality is 48")
+    void updateQualityOfBackstagePassesWhenSellInIsBetween5And0AndQualityIs48() {
+        GildedRose app = new GildedRose(new Item[]{
+                new Item("Backstage passes to a TAFKAL80ETC concert", 4, 48)
+        });
+        app.updateQuality();
+        assertEquals(50, app.items[0].quality);
     }
 }
