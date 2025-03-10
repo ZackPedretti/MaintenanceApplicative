@@ -87,7 +87,6 @@ public class Game implements IGame {
     }
 
     private void askQuestion() {
-
         switch (currentCategory()) {
             case "Pop" -> System.out.println(popQuestions.removeFirst());
             case "Science" -> System.out.println(scienceQuestions.removeFirst());
@@ -107,42 +106,26 @@ public class Game implements IGame {
     }
 
     public boolean handleCorrectAnswer() {
-        if (inPenaltyBox[currentPlayer]) {
-            if (isGettingOutOfPenaltyBox) {
-                System.out.println("Answer was correct!!!!");
-                purses[currentPlayer]++;
-                System.out.println(players.get(currentPlayer)
-                        + " now has "
-                        + purses[currentPlayer]
-                        + " Gold Coins.");
 
-                boolean winner = didPlayerWin();
-                currentPlayer++;
-                if (currentPlayer == players.size()) currentPlayer = 0;
-
-                return winner;
-            } else {
-                currentPlayer++;
-                if (currentPlayer == players.size()) currentPlayer = 0;
-                return true;
-            }
-
-
-        } else {
-
-            System.out.println("Answer was correct!!!!");
-            purses[currentPlayer]++;
-            System.out.println(players.get(currentPlayer)
-                    + " now has "
-                    + purses[currentPlayer]
-                    + " Gold Coins.");
-
-            boolean winner = didPlayerWin();
+        if (!isGettingOutOfPenaltyBox && inPenaltyBox[currentPlayer]) {
             currentPlayer++;
             if (currentPlayer == players.size()) currentPlayer = 0;
-
-            return winner;
+            return true;
         }
+
+        System.out.println("Answer was correct!!!!");
+        purses[currentPlayer]++;
+        System.out.println(players.get(currentPlayer)
+                + " now has "
+                + purses[currentPlayer]
+                + " Gold Coins.");
+
+        boolean winner = didPlayerWin();
+        currentPlayer++;
+        if (currentPlayer == players.size()) currentPlayer = 0;
+
+        return winner;
+
     }
 
     public boolean wrongAnswer() {
