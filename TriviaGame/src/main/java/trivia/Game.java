@@ -87,14 +87,14 @@ public class Game implements IGame {
     }
 
     private void askQuestion() {
-        if (currentCategory().equals("Pop"))
-            System.out.println(popQuestions.removeFirst());
-        if (currentCategory().equals("Science"))
-            System.out.println(scienceQuestions.removeFirst());
-        if (currentCategory().equals("Sports"))
-            System.out.println(sportsQuestions.removeFirst());
-        if (currentCategory().equals("Rock"))
-            System.out.println(rockQuestions.removeFirst());
+
+        switch (currentCategory()) {
+            case "Pop" -> System.out.println(popQuestions.removeFirst());
+            case "Science" -> System.out.println(scienceQuestions.removeFirst());
+            case "Sports" -> System.out.println(sportsQuestions.removeFirst());
+            case "Rock" -> System.out.println(rockQuestions.removeFirst());
+            default -> throw new IllegalArgumentException("Catégorie inconnue : " + currentCategory());
+        }
     }
 
     private String currentCategory() {
