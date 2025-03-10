@@ -61,6 +61,6 @@ public class GameTest {
 			System.setOut(old);
 		}
 
-		return new String(baos.toByteArray());
+		return baos.toString();
 	}
 }
