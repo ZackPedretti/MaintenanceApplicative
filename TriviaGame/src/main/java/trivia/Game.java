@@ -20,11 +20,23 @@ public class Game implements IGame {
 
     public Game() {
         for (int i = 0; i < 50; i++) {
-            popQuestions.addLast("Pop Question " + i);
-            scienceQuestions.addLast(("Science Question " + i));
-            sportsQuestions.addLast(("Sports Question " + i));
+            popQuestions.addLast(createPopQuestion(i));
+            scienceQuestions.addLast(createScienceQuestion(i));
+            sportsQuestions.addLast(createSportsQuestion(i));
             rockQuestions.addLast(createRockQuestion(i));
         }
+    }
+
+    public String createPopQuestion(int index) {
+        return "Pop Question " + index;
+    }
+
+    public String createScienceQuestion(int index) {
+        return "Science Question " + index;
+    }
+
+    public String createSportsQuestion(int index) {
+        return "Sports Question " + index;
     }
 
     public String createRockQuestion(int index) {
