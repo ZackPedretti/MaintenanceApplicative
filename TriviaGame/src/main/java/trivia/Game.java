@@ -5,16 +5,18 @@ import java.util.LinkedList;
 
 // REFACTOR ME
 public class Game implements IGame {
+    private final String POP_THEME = "Pop";
+    private final String SCIENCE_THEME = "Science";
+    private final String SPORTS_THEME = "Sports";
+    private final String ROCK_THEME = "Rock";
     ArrayList<String> players = new ArrayList<>();
     int[] places = new int[6];
     int[] purses = new int[6];
     boolean[] inPenaltyBox = new boolean[6];
-
     LinkedList<String> popQuestions = new LinkedList<>();
     LinkedList<String> scienceQuestions = new LinkedList<>();
     LinkedList<String> sportsQuestions = new LinkedList<>();
     LinkedList<String> rockQuestions = new LinkedList<>();
-
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
@@ -28,19 +30,19 @@ public class Game implements IGame {
     }
 
     public String createPopQuestion(int index) {
-        return "Pop Question " + index;
+        return POP_THEME + " Question " + index;
     }
 
     public String createScienceQuestion(int index) {
-        return "Science Question " + index;
+        return SCIENCE_THEME + " Question " + index;
     }
 
     public String createSportsQuestion(int index) {
-        return "Sports Question " + index;
+        return SPORTS_THEME + " Question " + index;
     }
 
     public String createRockQuestion(int index) {
-        return "Rock Question " + index;
+        return ROCK_THEME + " Question " + index;
     }
 
     public boolean isPlayable() {
@@ -105,20 +107,20 @@ public class Game implements IGame {
 
     private void askQuestion() {
         switch (currentCategory()) {
-            case "Pop" -> System.out.println(popQuestions.removeFirst());
-            case "Science" -> System.out.println(scienceQuestions.removeFirst());
-            case "Sports" -> System.out.println(sportsQuestions.removeFirst());
-            case "Rock" -> System.out.println(rockQuestions.removeFirst());
+            case POP_THEME -> System.out.println(popQuestions.removeFirst());
+            case SCIENCE_THEME -> System.out.println(scienceQuestions.removeFirst());
+            case SPORTS_THEME -> System.out.println(sportsQuestions.removeFirst());
+            case ROCK_THEME -> System.out.println(rockQuestions.removeFirst());
             default -> throw new IllegalArgumentException("Catégorie inconnue : " + currentCategory());
         }
     }
 
     private String currentCategory() {
         return switch ((places[currentPlayer] - 1) % 4) {
-            case 0 -> "Pop";
-            case 1 -> "Science";
-            case 2 -> "Sports";
-            default -> "Rock";
+            case 0 -> POP_THEME;
+            case 1 -> SCIENCE_THEME;
+            case 2 -> SPORTS_THEME;
+            default -> ROCK_THEME;
         };
     }
 
