@@ -98,16 +98,12 @@ public class Game implements IGame {
     }
 
     private String currentCategory() {
-        switch ((places[currentPlayer] - 1) % 4) {
-            case 0:
-                return "Pop";
-            case 1:
-                return "Science";
-            case 2:
-                return "Sports";
-            default:
-                return "Rock";
-        }
+        return switch ((places[currentPlayer] - 1) % 4) {
+            case 0 -> "Pop";
+            case 1 -> "Science";
+            case 2 -> "Sports";
+            default -> "Rock";
+        };
     }
 
     public boolean handleCorrectAnswer() {
