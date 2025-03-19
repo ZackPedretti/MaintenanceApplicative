@@ -1,16 +1,16 @@
 import java.time.LocalDateTime;
 
 public class Meeting extends Event{
-    String lieu;
+    Place place;
     String participants;
 
-    public Meeting(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes, String lieu, String participants) {
-        super(title, proprietaire, dateDebut, dureeMinutes);
-        this.lieu = lieu;
+    public Meeting(EventTitle title, User owner, LocalDateTime startingDate, Duration duration, Place place, String participants) {
+        super(title, owner, startingDate, duration);
+        this.place = place;
         this.participants = participants;
     }
 
     public String description(){
-        return "Réunion : " + title + " à " + lieu + " avec " + participants;
+        return "Réunion : " + title + " à " + place + " avec " + participants;
     }
 }

@@ -2,16 +2,16 @@ import java.time.LocalDateTime;
 
 public abstract class Event {
     public EventTitle title;
-    public User proprietaire;
-    public LocalDateTime dateDebut;
-    public Duration dureeMinutes;
+    public User owner;
+    public LocalDateTime startingDate;
+    public Duration duration;
 
 
-    public Event(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes) {
+    public Event(EventTitle title, User owner, LocalDateTime startingDate, Duration duration) {
         this.title = title;
-        this.proprietaire = proprietaire;
-        this.dateDebut = dateDebut;
-        this.dureeMinutes = dureeMinutes;
+        this.owner = owner;
+        this.startingDate = startingDate;
+        this.duration = duration;
     }
 
     abstract String description();

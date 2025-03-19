@@ -161,7 +161,7 @@ public class Main {
                         System.out.print("Durée (en minutes) : ");
                         Duration duree2 = new Duration(Integer.parseInt(scanner.nextLine()));
                         System.out.println("Lieu :");
-                        String lieu = scanner.nextLine();
+                        Place lieu = new Place(scanner.nextLine());
 
                         StringBuilder participants = new StringBuilder(user.toString());
 

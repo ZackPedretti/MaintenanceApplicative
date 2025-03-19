@@ -10,7 +10,7 @@ public class CalendarManager {
     }
 
     public void addMeeting(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes,
-                           String lieu, String participants){
+                           Place lieu, String participants){
         events.add(new Meeting(title, proprietaire, dateDebut, dureeMinutes, lieu, participants));
     }
 
@@ -26,7 +26,7 @@ public class CalendarManager {
         List<Event> result = new ArrayList<>();
         for (Event e : events) {
             if (e instanceof Periodic) {
-                LocalDateTime temp = e.dateDebut;
+                LocalDateTime temp = e.startingDate;
                 while (temp.isBefore(fin)) {
                     if (!temp.isBefore(debut)) {
                         result.add(e);
@@ -34,7 +34,7 @@ public class CalendarManager {
                     }
                     temp = temp.plusDays(((Periodic) e).getFrequenceJours());
                 }
-            } else if (!e.dateDebut.isBefore(debut) && !e.dateDebut.isAfter(fin)) {
+            } else if (!e.startingDate.isBefore(debut) && !e.startingDate.isAfter(fin)) {
                 result.add(e);
             }
         }
@@ -42,14 +42,14 @@ public class CalendarManager {
     }
 
     public boolean conflit(Event e1, Event e2) {
-        LocalDateTime fin1 = e1.dateDebut.plusMinutes(e1.dureeMinutes.getMinutes());
-        LocalDateTime fin2 = e2.dateDebut.plusMinutes(e2.dureeMinutes.getMinutes());
+        LocalDateTime fin1 = e1.startingDate.plusMinutes(e1.duration.getMinutes());
+        LocalDateTime fin2 = e2.startingDate.plusMinutes(e2.duration.getMinutes());
 
         if (e1 instanceof Periodic || e2 instanceof Periodic) {
             return false; // Simplification abusive
         }
 
-        return e1.dateDebut.isBefore(fin2) && fin1.isAfter(e2.dateDebut);
+        return e1.startingDate.isBefore(fin2) && fin1.isAfter(e2.startingDate);
     }
 
     public void afficherEvenements() {
