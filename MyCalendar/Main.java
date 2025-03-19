@@ -43,7 +43,7 @@ public class Main {
                     case "2":
 
                         user = signUp(scanner);
-                        users.add(user);
+                        if(user != null) users.add(user);
                         break;
                 }
             }
@@ -229,6 +229,7 @@ public class Main {
         UserName userName = new UserName(scanner.nextLine());
         System.out.print("Mot de passe: ");
         UserPassword userPassword = new UserPassword(scanner.nextLine());
+        System.out.println(users);
         return users.stream().filter(u -> u.hasName(userName) && u.checkPassword(userPassword)).findFirst().orElse(null);
     }
 
@@ -239,7 +240,7 @@ public class Main {
         UserPassword userPassword = new UserPassword(scanner.nextLine());
         System.out.print("Répéter mot de passe: ");
         UserPassword repeatedPassword = new UserPassword(scanner.nextLine());
-        if(!repeatedPassword.equals(userPassword)) {
+        if(!repeatedPassword.checkPassword(userPassword.toString())) {
             System.out.println("Les mots de passes ne correspondent pas...");
             return null;
         }
