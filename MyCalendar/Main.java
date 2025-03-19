@@ -9,8 +9,6 @@ public class Main {
         User user = null;
         boolean continuer = true;
 
-        int nbUtilisateurs = 0;
-
         List<User> users = new ArrayList<>(List.of(
                 new User("Roger", "Chat"),
                 new User("Pierre", "KiRouhl")
@@ -138,7 +136,7 @@ public class Main {
                         System.out.print("Minute début (0-59) : ");
                         int minute = Integer.parseInt(scanner.nextLine());
                         System.out.print("Durée (en minutes) : ");
-                        int duree = Integer.parseInt(scanner.nextLine());
+                        Duration duree = new Duration(Integer.parseInt(scanner.nextLine()));
 
                         calendar.ajouterEvent(EventType.REUNION, titre, user,
                                 LocalDateTime.of(annee, moisRdv, jourRdv, heure, minute), duree,
@@ -162,13 +160,12 @@ public class Main {
                         System.out.print("Minute début (0-59) : ");
                         int minute2 = Integer.parseInt(scanner.nextLine());
                         System.out.print("Durée (en minutes) : ");
-                        int duree2 = Integer.parseInt(scanner.nextLine());
+                        Duration duree2 = new Duration(Integer.parseInt(scanner.nextLine()));
                         System.out.println("Lieu :");
                         String lieu = scanner.nextLine();
 
                         StringBuilder participants = new StringBuilder(user.toString());
 
-                        boolean encore = true;
                         System.out.println("Ajouter un participant ? (oui / non)");
                         while (scanner.nextLine().equals("oui")) {
                             System.out.print("Participants : " + participants);
@@ -200,7 +197,7 @@ public class Main {
                         int frequence = Integer.parseInt(scanner.nextLine());
 
                         calendar.ajouterEvent(EventType.PERIODIQUE, titre3, user,
-                                LocalDateTime.of(annee3, moisRdv3, jourRdv3, heure3, minute3), 0,
+                                LocalDateTime.of(annee3, moisRdv3, jourRdv3, heure3, minute3), new Duration(0),
                                 "", "", frequence);
 
                         System.out.println("Événement ajouté.");
