@@ -138,9 +138,8 @@ public class Main {
                         System.out.print("Durée (en minutes) : ");
                         Duration duree = new Duration(Integer.parseInt(scanner.nextLine()));
 
-                        calendar.ajouterEvent(EventType.REUNION, titre, user,
-                                LocalDateTime.of(annee, moisRdv, jourRdv, heure, minute), duree,
-                                "", "", 0);
+                        calendar.addPersonalAppointment(titre, user,
+                                LocalDateTime.of(annee, moisRdv, jourRdv, heure, minute), duree);
 
                         System.out.println("Événement ajouté.");
                         break;
@@ -172,9 +171,9 @@ public class Main {
                             participants.append(", ").append(scanner.nextLine());
                         }
 
-                        calendar.ajouterEvent(EventType.REUNION, titre2, user,
+                        calendar.addMeeting(titre2, user,
                                 LocalDateTime.of(annee2, moisRdv2, jourRdv2, heure2, minute2), duree2,
-                                lieu, participants.toString(), 0);
+                                lieu, participants.toString());
 
                         System.out.println("Événement ajouté.");
                         break;
@@ -196,9 +195,9 @@ public class Main {
                         System.out.print("Frequence (en jours) : ");
                         int frequence = Integer.parseInt(scanner.nextLine());
 
-                        calendar.ajouterEvent(EventType.PERIODIQUE, titre3, user,
+                        calendar.addPeriodic(titre3, user,
                                 LocalDateTime.of(annee3, moisRdv3, jourRdv3, heure3, minute3), new Duration(0),
-                                "", "", frequence);
+                                frequence);
 
                         System.out.println("Événement ajouté.");
                         break;
