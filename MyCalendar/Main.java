@@ -43,7 +43,7 @@ public class Main {
                     case "2":
 
                         user = signUp(scanner);
-                        if(user != null) users.add(user);
+                        if (user != null) users.add(user);
                         break;
                 }
             }
@@ -173,7 +173,7 @@ public class Main {
 
                         calendar.addMeeting(titre2, user,
                                 LocalDateTime.of(annee2, moisRdv2, jourRdv2, heure2, minute2), duree2,
-                                lieu, participants.toString());
+                                lieu, new Participants(participants.toString()));
 
                         System.out.println("Événement ajouté.");
                         break;
@@ -239,7 +239,7 @@ public class Main {
         UserPassword userPassword = new UserPassword(scanner.nextLine());
         System.out.print("Répéter mot de passe: ");
         UserPassword repeatedPassword = new UserPassword(scanner.nextLine());
-        if(!repeatedPassword.checkPassword(userPassword.toString())) {
+        if (!repeatedPassword.checkPassword(userPassword.toString())) {
             System.out.println("Les mots de passes ne correspondent pas...");
             return null;
         }

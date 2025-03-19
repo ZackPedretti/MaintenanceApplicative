@@ -10,7 +10,7 @@ public class CalendarManager {
     }
 
     public void addMeeting(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes,
-                           Place lieu, String participants){
+                           Place lieu, Participants participants){
         events.add(new Meeting(title, proprietaire, dateDebut, dureeMinutes, lieu, participants));
     }
 
