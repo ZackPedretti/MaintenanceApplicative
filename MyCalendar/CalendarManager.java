@@ -14,7 +14,7 @@ public class CalendarManager {
         events.add(new Meeting(title, proprietaire, dateDebut, dureeMinutes, lieu, participants));
     }
 
-    public void addPeriodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes, int frequenceJours){
+    public void addPeriodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes, PeriodicFrequency frequenceJours){
         events.add(new Periodic(title, proprietaire, dateDebut, dureeMinutes, frequenceJours));
     }
 

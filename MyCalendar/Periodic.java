@@ -1,8 +1,8 @@
 import java.time.LocalDateTime;
 
 public class Periodic extends Event{
-    int frequenceJours;
-    public Periodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes, int frequenceJours) {
+    PeriodicFrequency frequenceJours;
+    public Periodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes, PeriodicFrequency frequenceJours) {
         super(title, proprietaire, dateDebut, dureeMinutes);
         this.frequenceJours = frequenceJours;
     }
@@ -12,6 +12,6 @@ public class Periodic extends Event{
     }
 
     public int getFrequenceJours() {
-        return frequenceJours;
+        return frequenceJours.getFrequency();
     }
 }

@@ -193,7 +193,7 @@ public class Main {
                         System.out.print("Minute début (0-59) : ");
                         int minute3 = Integer.parseInt(scanner.nextLine());
                         System.out.print("Frequence (en jours) : ");
-                        int frequence = Integer.parseInt(scanner.nextLine());
+                        PeriodicFrequency frequence = new PeriodicFrequency(Integer.parseInt(scanner.nextLine()));
 
                         calendar.addPeriodic(titre3, user,
                                 LocalDateTime.of(annee3, moisRdv3, jourRdv3, heure3, minute3), new Duration(0),
