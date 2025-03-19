@@ -17,7 +17,7 @@ public class Main {
         ));
 
         String ascii = """
-                   _____         _                   _                __  __
+                   _____        _                   _                __  __
                  / ____|       | |                 | |              |  \\/  |
                 | |       __ _ | |  ___  _ __    __| |  __ _  _ __  | \\  / |  __ _  _ __    __ _   __ _   ___  _ __
                 | |      / _` || | / _ \\| '_ \\  / _` | / _` || '__| | |\\/| | / _` || '_ \\  / _` | / _` | / _ \\| '__|
@@ -230,6 +230,7 @@ public class Main {
     private static User signIn(Scanner scanner, List<User> users) {
         System.out.print("Nom d'utilisateur: ");
         UserName userName = new UserName(scanner.nextLine());
+        System.out.print("Mot de passe: ");
         UserPassword userPassword = new UserPassword(scanner.nextLine());
         return users.stream().filter(u -> u.hasName(userName) && u.checkPassword(userPassword)).findFirst().orElse(null);
     }

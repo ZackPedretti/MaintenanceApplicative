@@ -8,5 +8,8 @@ public class UserPassword {
         return this.password.equals(password);
     }
 
-
+    @Override
+    public String toString() {
+        return password;
+    }
 }
