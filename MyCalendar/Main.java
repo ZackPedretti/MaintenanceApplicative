@@ -11,8 +11,8 @@ public class Main {
         String utilisateur = null;
         boolean continuer = true;
 
-        String utilisateurs[] = new String[99];
-        String motsDePasses[] = new String[99];
+        String[] utilisateurs = new String[99];
+        String[] motsDePasses = new String[99];
         int nbUtilisateurs = 0;
 
         while (true) {
@@ -58,6 +58,7 @@ public class Main {
                                 String motDePasse = scanner.nextLine();
 
                                 for (int i = 0; i < nbUtilisateurs; i = i + 1) {
+                                    assert utilisateurs[i] != null;
                                     if (utilisateurs[i].equals(utilisateur) && motsDePasses[i].equals(motDePasse)) {
                                         utilisateur = utilisateurs[i];
                                     }
@@ -174,7 +175,7 @@ public class Main {
                         System.out.print("Durée (en minutes) : ");
                         int duree = Integer.parseInt(scanner.nextLine());
 
-                        calendar.ajouterEvent("RDV_PERSONNEL", titre, utilisateur,
+                        calendar.ajouterEvent(EventType.REUNION, titre, utilisateur,
                                 LocalDateTime.of(annee, moisRdv, jourRdv, heure, minute), duree,
                                 "", "", 0);
 
@@ -200,19 +201,19 @@ public class Main {
                         System.out.println("Lieu :");
                         String lieu = scanner.nextLine();
                         
-                        String participants = utilisateur;
+                        StringBuilder participants = new StringBuilder(utilisateur);
                         
                         boolean encore = true;
                         System.out.println("Ajouter un participant ? (oui / non)");
                         while (scanner.nextLine().equals("oui"))
                         {
                             System.out.print("Participants : " + participants);
-                            participants += ", " + scanner.nextLine();
+                            participants.append(", ").append(scanner.nextLine());
                         }
 
-                        calendar.ajouterEvent("REUNION", titre2, utilisateur,
+                        calendar.ajouterEvent(EventType.REUNION, titre2, utilisateur,
                                 LocalDateTime.of(annee2, moisRdv2, jourRdv2, heure2, minute2), duree2,
-                                lieu, participants, 0);
+                                lieu, participants.toString(), 0);
 
                         System.out.println("Événement ajouté.");
                         break;
@@ -234,7 +235,7 @@ public class Main {
                         System.out.print("Frequence (en jours) : ");
                         int frequence = Integer.parseInt(scanner.nextLine());
 
-                        calendar.ajouterEvent("PERIODIQUE", titre3, utilisateur,
+                        calendar.ajouterEvent(EventType.PERIODIQUE, titre3, utilisateur,
                                 LocalDateTime.of(annee3, moisRdv3, jourRdv3, heure3, minute3), 0,
                                 "", "", frequence);
 
