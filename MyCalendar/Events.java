@@ -17,4 +17,8 @@ public class Events implements Iterable<Event> {
     public Iterator<Event> iterator() {
         return events.iterator();
     }
+
+    public boolean isEmpty() {
+        return events.isEmpty();
+    }
 }

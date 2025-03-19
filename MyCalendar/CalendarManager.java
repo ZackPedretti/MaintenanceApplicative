@@ -22,19 +22,19 @@ public class CalendarManager {
         events.addEvent(new PersonalAppointment(title, proprietaire, dateDebut, dureeMinutes));
     }
 
-    public List<Event> eventsWithinPeriod(LocalDateTime debut, LocalDateTime fin) {
+    public List<Event> eventsWithinPeriod(LocalDateTime start, LocalDateTime end) {
         List<Event> result = new ArrayList<>();
         for (Event e : events) {
             if (e instanceof Periodic) {
                 LocalDateTime temp = e.startingDate;
-                while (temp.isBefore(fin)) {
-                    if (!temp.isBefore(debut)) {
+                while (temp.isBefore(end)) {
+                    if (!temp.isBefore(start)) {
                         result.add(e);
                         break;
                     }
                     temp = temp.plusDays(((Periodic) e).getFrequenceJours());
                 }
-            } else if (!e.startingDate.isBefore(debut) && !e.startingDate.isAfter(fin)) {
+            } else if (!e.startingDate.isBefore(start) && !e.startingDate.isAfter(end)) {
                 result.add(e);
             }
         }

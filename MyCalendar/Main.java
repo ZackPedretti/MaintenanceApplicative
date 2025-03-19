@@ -14,25 +14,11 @@ public class Main {
                 new User("Pierre", "KiRouhl")
         ));
 
-        String ascii = """
-                   _____        _                   _                __  __
-                 / ____|       | |                 | |              |  \\/  |
-                | |       __ _ | |  ___  _ __    __| |  __ _  _ __  | \\  / |  __ _  _ __    __ _   __ _   ___  _ __
-                | |      / _` || | / _ \\| '_ \\  / _` | / _` || '__| | |\\/| | / _` || '_ \\  / _` | / _` | / _ \\| '__|
-                | |____ | (_| || ||  __/| | | || (_| || (_| || |    | |  | || (_| || | | || (_| || (_| ||  __/| |
-                 \\_____| \\__,_||_| \\___||_| |_| \\__,_| \\__,_||_|    |_|  |_| \\__,_||_| |_| \\__,_| \\__, | \\___||_|
-                                                                                                   __/ |
-                                                                                                  |___/
-                """;
-
         while (true) {
 
             if (user == null) {
-                System.out.println(ascii);
 
-                System.out.println("1 - Se connecter");
-                System.out.println("2 - Créer un compte");
-                System.out.println("Choix : ");
+                UIActions.printBaseMenu();
 
                 switch (scanner.nextLine()) {
 
@@ -49,26 +35,13 @@ public class Main {
             }
 
             while (continuer && user != null) {
-                System.out.println("\nBonjour, " + user);
-                System.out.println("=== Menu Gestionnaire d'Événements ===");
-                System.out.println("1 - Voir les événements");
-                System.out.println("2 - Ajouter un rendez-vous perso");
-                System.out.println("3 - Ajouter une réunion");
-                System.out.println("4 - Ajouter un évènement périodique");
-                System.out.println("5 - Se déconnecter");
-                System.out.print("Votre choix : ");
+                UIActions.printActionMenu(user);
 
                 String choix = scanner.nextLine();
 
                 switch (choix) {
                     case "1":
-                        System.out.println("\n=== Menu de visualisation d'Événements ===");
-                        System.out.println("1 - Afficher TOUS les événements");
-                        System.out.println("2 - Afficher les événements d'un MOIS précis");
-                        System.out.println("3 - Afficher les événements d'une SEMAINE précise");
-                        System.out.println("4 - Afficher les événements d'un JOUR précis");
-                        System.out.println("5 - Retour");
-                        System.out.print("Votre choix : ");
+                        UIActions.printEventMenu();
 
                         choix = scanner.nextLine();
 
@@ -212,35 +185,26 @@ public class Main {
         }
     }
 
-    private static void afficherListe(List<Event> evenements) {
-        if (evenements.isEmpty()) {
-            System.out.println("Aucun événement trouvé pour cette période.");
+    private static void afficherListe(Events events) {
+        if (events.isEmpty()) {
+            UIActions.printNoEventFound();
         } else {
-            System.out.println("Événements trouvés : ");
-            for (Event e : evenements) {
-                System.out.println("- " + e.description());
-            }
+            UIActions.printFoundEvents(events);
         }
     }
 
     private static User signIn(Scanner scanner, List<User> users) {
-        System.out.print("Nom d'utilisateur: ");
-        UserName userName = new UserName(scanner.nextLine());
-        System.out.print("Mot de passe: ");
-        UserPassword userPassword = new UserPassword(scanner.nextLine());
+        UserName userName = new UserName(UIActions.askUserName(scanner));
+        UserPassword userPassword = new UserPassword(UIActions.askUserPassword(scanner));
         System.out.println(users);
         return users.stream().filter(u -> u.hasName(userName) && u.checkPassword(userPassword)).findFirst().orElse(null);
     }
 
     private static User signUp(Scanner scanner) {
-        System.out.print("Nom d'utilisateur: ");
-        UserName userName = new UserName(scanner.nextLine());
-        System.out.print("Mot de passe: ");
-        UserPassword userPassword = new UserPassword(scanner.nextLine());
-        System.out.print("Répéter mot de passe: ");
-        UserPassword repeatedPassword = new UserPassword(scanner.nextLine());
-        if (!repeatedPassword.checkPassword(userPassword.toString())) {
-            System.out.println("Les mots de passes ne correspondent pas...");
+        UserName userName = new UserName(UIActions.askUserName(scanner));
+        UserPassword userPassword = new UserPassword(UIActions.askUserPassword(scanner));
+        if (!userPassword.checkPassword(UIActions.askUserPassword(scanner))) {
+            UIActions.printIncorrectPasswordRepetition();
             return null;
         }
         return new User(userName, userPassword);
