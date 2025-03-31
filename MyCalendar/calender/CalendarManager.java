@@ -1,6 +1,9 @@
+package calender;
+
+import events.*;
+import user.User;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CalendarManager {
     public Events events;
@@ -22,20 +25,20 @@ public class CalendarManager {
         events.addEvent(new PersonalAppointment(title, proprietaire, dateDebut, dureeMinutes));
     }
 
-    public List<Event> eventsWithinPeriod(LocalDateTime start, LocalDateTime end) {
-        List<Event> result = new ArrayList<>();
+    public Events eventsWithinPeriod(LocalDateTime start, LocalDateTime end) {
+        Events result = new Events();
         for (Event e : events) {
             if (e instanceof Periodic) {
                 LocalDateTime temp = e.startingDate;
                 while (temp.isBefore(end)) {
                     if (!temp.isBefore(start)) {
-                        result.add(e);
+                        result.addEvent(e);
                         break;
                     }
                     temp = temp.plusDays(((Periodic) e).getFrequenceJours());
                 }
             } else if (!e.startingDate.isBefore(start) && !e.startingDate.isAfter(end)) {
-                result.add(e);
+                result.addEvent(e);
             }
         }
         return result;

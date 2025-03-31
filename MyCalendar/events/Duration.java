@@ -1,3 +1,5 @@
+package events;
+
 public class Duration {
     int minutes;
     public Duration(int minutes) {

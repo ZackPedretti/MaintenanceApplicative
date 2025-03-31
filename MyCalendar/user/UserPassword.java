@@ -1,3 +1,5 @@
+package user;
+
 public class UserPassword {
     String password;
     public UserPassword(String password) {

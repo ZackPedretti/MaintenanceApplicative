@@ -1,3 +1,7 @@
+package events;
+
+import user.User;
+
 import java.time.LocalDateTime;
 
 public abstract class Event {
@@ -14,5 +18,5 @@ public abstract class Event {
         this.duration = duration;
     }
 
-    abstract String description();
+    public abstract String description();
 }

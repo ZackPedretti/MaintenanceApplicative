@@ -1,3 +1,5 @@
+package events;
+
 public class PeriodicFrequency {
     int frequency;
     public PeriodicFrequency(int frequency) {

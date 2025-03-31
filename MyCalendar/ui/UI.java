@@ -1,6 +1,12 @@
+package ui;
+
+import events.Event;
+import events.Events;
+import user.User;
+
 import java.util.Scanner;
 
-public class UIActions {
+public class UI {
     public static void printBaseMenu(){
         AsciiArt.printAscii();
 

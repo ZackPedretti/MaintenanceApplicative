@@ -1,3 +1,5 @@
+package user;
+
 public class User {
     UserName name;
     UserPassword password;

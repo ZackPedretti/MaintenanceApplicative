@@ -1,6 +1,10 @@
+package events;
+
+import user.User;
+
 import java.time.LocalDateTime;
 
-public class Periodic extends Event{
+public class Periodic extends Event {
     PeriodicFrequency frequenceJours;
     public Periodic(EventTitle title, User owner, LocalDateTime startingDate, Duration duration, PeriodicFrequency frequency) {
         super(title, owner, startingDate, duration);

@@ -1,3 +1,5 @@
+package user;
+
 public class UserName {
     String name;
     public UserName(String name) {

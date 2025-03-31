@@ -1,3 +1,11 @@
+import calender.CalendarManager;
+import events.*;
+import ui.UI;
+import user.User;
+import user.UserList;
+import events.Duration;
+import actions.*;
+
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
 import java.util.*;
@@ -9,39 +17,20 @@ public class Main {
         User user = null;
         boolean continuer = true;
 
-        List<User> users = new ArrayList<>(List.of(
-                new User("Roger", "Chat"),
-                new User("Pierre", "KiRouhl")
-        ));
+        List<User> users = UserList.getUsers();
 
         while (true) {
 
-            if (user == null) {
-
-                UIActions.printBaseMenu();
-
-                switch (scanner.nextLine()) {
-
-                    case "1":
-                        user = signIn(scanner, users);
-                        break;
-
-                    case "2":
-
-                        user = signUp(scanner);
-                        if (user != null) users.add(user);
-                        break;
-                }
-            }
+            (new LogInUserAction(user)).execute();
 
             while (continuer && user != null) {
-                UIActions.printActionMenu(user);
+                UI.printActionMenu(user);
 
                 String choix = scanner.nextLine();
 
                 switch (choix) {
                     case "1":
-                        UIActions.printEventMenu();
+                        UI.printEventMenu();
 
                         choix = scanner.nextLine();
 
@@ -140,7 +129,7 @@ public class Main {
 
                         System.out.println("Ajouter un participant ? (oui / non)");
                         while (scanner.nextLine().equals("oui")) {
-                            System.out.print("Participants : " + participants);
+                            System.out.print("events.Participants : " + participants);
                             participants.append(", ").append(scanner.nextLine());
                         }
 
@@ -187,26 +176,9 @@ public class Main {
 
     private static void afficherListe(Events events) {
         if (events.isEmpty()) {
-            UIActions.printNoEventFound();
+            UI.printNoEventFound();
         } else {
-            UIActions.printFoundEvents(events);
+            UI.printFoundEvents(events);
         }
-    }
-
-    private static User signIn(Scanner scanner, List<User> users) {
-        UserName userName = new UserName(UIActions.askUserName(scanner));
-        UserPassword userPassword = new UserPassword(UIActions.askUserPassword(scanner));
-        System.out.println(users);
-        return users.stream().filter(u -> u.hasName(userName) && u.checkPassword(userPassword)).findFirst().orElse(null);
-    }
-
-    private static User signUp(Scanner scanner) {
-        UserName userName = new UserName(UIActions.askUserName(scanner));
-        UserPassword userPassword = new UserPassword(UIActions.askUserPassword(scanner));
-        if (!userPassword.checkPassword(UIActions.askUserPassword(scanner))) {
-            UIActions.printIncorrectPasswordRepetition();
-            return null;
-        }
-        return new User(userName, userPassword);
     }
 }

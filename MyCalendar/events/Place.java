@@ -1,3 +1,5 @@
+package events;
+
 public class Place {
     public String place;
     public Place(String place) {

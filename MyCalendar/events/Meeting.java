@@ -1,6 +1,10 @@
+package events;
+
+import user.User;
+
 import java.time.LocalDateTime;
 
-public class Meeting extends Event{
+public class Meeting extends Event {
     Place place;
     Participants participants;
 

@@ -1,3 +1,5 @@
+package ui;
+
 public class AsciiArt {
     static String ascii = """
                    _____        _                   _                __  __
