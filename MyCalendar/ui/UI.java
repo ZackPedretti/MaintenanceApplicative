@@ -163,4 +163,21 @@ public class UI {
         return scanner.nextLine();
     }
 
+    public static String askEventPlace(){
+        System.out.println("Lieu :");
+        return scanner.nextLine();
+    }
+
+    public static String askEventParticipants(StringBuilder participants){
+        System.out.println("Ajouter un participant ? (oui / non)");
+        while (scanner.nextLine().equals("oui")) {
+            System.out.print("events.Participants : " + participants);
+            participants.append(", ").append(scanner.nextLine());
+        }
+        return participants.toString();
+    }
+
+    public static void printEventAdded(){
+        System.out.println("Événement ajouté.");
+    }
 }

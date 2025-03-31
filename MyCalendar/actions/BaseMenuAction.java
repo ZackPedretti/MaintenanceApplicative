@@ -37,35 +37,7 @@ public class BaseMenuAction implements Action {
 
                 case "3":
                     // Ajout simplifié d'une réunion
-                    EventTitle titre2 = new EventTitle(UI.askEventTitle());
-                    System.out.print("Année (AAAA) : ");
-                    int annee2 = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Mois (1-12) : ");
-                    int moisRdv2 = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Jour (1-31) : ");
-                    int jourRdv2 = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Heure début (0-23) : ");
-                    int heure2 = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Minute début (0-59) : ");
-                    int minute2 = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Durée (en minutes) : ");
-                    EventDuration duree2 = new EventDuration(Integer.parseInt(scanner.nextLine()));
-                    System.out.println("Lieu :");
-                    Place lieu = new Place(scanner.nextLine());
 
-                    StringBuilder participants = new StringBuilder(authManager.getSignedInUser().toString());
-
-                    System.out.println("Ajouter un participant ? (oui / non)");
-                    while (scanner.nextLine().equals("oui")) {
-                        System.out.print("events.Participants : " + participants);
-                        participants.append(", ").append(scanner.nextLine());
-                    }
-
-                    calendar.addMeeting(titre2, authManager.getSignedInUser(),
-                            LocalDateTime.of(annee2, moisRdv2, jourRdv2, heure2, minute2), duree2,
-                            lieu, new Participants(participants.toString()));
-
-                    System.out.println("Événement ajouté.");
                     break;
 
                 case "4":
