@@ -16,6 +16,10 @@ public class AuthManager {
         UserList.getUsers().add(signedInUser);
     }
 
+    public void signOut(){
+        signedInUser = null;
+    }
+
     public User getSignedInUser() {
         return signedInUser;
     }
