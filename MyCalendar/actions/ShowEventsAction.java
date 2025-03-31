@@ -26,7 +26,7 @@ public class ShowEventsAction implements Action{
 
         switch (choix) {
             case "1":
-                calendar.showEvents();
+                (new ShowAllEventsAction(calendar)).execute();
                 break;
 
             case "2":
