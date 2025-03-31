@@ -7,6 +7,9 @@ import user.User;
 import java.util.Scanner;
 
 public class UI {
+
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void printLoginMenu(){
         AsciiArt.printAscii();
 
@@ -36,17 +39,17 @@ public class UI {
         System.out.print("Votre choix : ");
     }
 
-    public static String askUserName(Scanner scanner){
+    public static String askUserName(){
         System.out.print("Nom d'utilisateur: ");
         return scanner.nextLine();
     }
 
-    public static String askUserPassword(Scanner scanner){
+    public static String askUserPassword(){
         System.out.print("Mot de passe: ");
         return scanner.nextLine();
     }
 
-    public static String askUserPasswordAgain(Scanner scanner){
+    public static String askUserPasswordAgain(){
         System.out.print("Répéter mot de passe: ");
         return scanner.nextLine();
     }
@@ -78,7 +81,7 @@ public class UI {
         System.out.println("Veuillez entrer un numéro correct.");
     }
 
-    public static int askYear(Scanner scanner) {
+    public static int askYear() {
         while (true) {
             System.out.print("Entrez l'année (AAAA) : ");
             String input = scanner.nextLine();
@@ -89,7 +92,7 @@ public class UI {
         }
     }
 
-    public static int askMonth(Scanner scanner) {
+    public static int askMonth() {
         while (true) {
             System.out.print("Entrez le mois (1-12) : ");
             String input = scanner.nextLine();
@@ -100,7 +103,7 @@ public class UI {
         }
     }
 
-    public static int askWeek(Scanner scanner) {
+    public static int askWeek() {
         while (true) {
             System.out.print("Entrez le numéro de semaine (1-52) : ");
             String input = scanner.nextLine();
@@ -111,7 +114,7 @@ public class UI {
         }
     }
 
-    public static int askDay(Scanner scanner) {
+    public static int askDay() {
         while (true) {
             System.out.print("Entrez le jour (1-31) : ");
             String input = scanner.nextLine();

@@ -30,8 +30,8 @@ public class ShowEventsAction implements Action{
                 break;
 
             case "2":
-                int year = UI.askYear(scanner);
-                int month = UI.askMonth(scanner);
+                int year = UI.askYear();
+                int month = UI.askMonth();
 
                 LocalDateTime debutMois = LocalDateTime.of(year, month, 1, 0, 0);
                 LocalDateTime finMois = debutMois.plusMonths(1).minusSeconds(1);
@@ -40,8 +40,8 @@ public class ShowEventsAction implements Action{
                 break;
 
             case "3":
-                int anneeSemaine = UI.askYear(scanner);
-                int semaine = UI.askWeek(scanner);
+                int anneeSemaine = UI.askYear();
+                int semaine = UI.askWeek();
 
                 LocalDateTime debutSemaine = LocalDateTime.now()
                         .withYear(anneeSemaine)
@@ -54,9 +54,9 @@ public class ShowEventsAction implements Action{
                 break;
 
             case "4":
-                int anneeJour = UI.askYear(scanner);
-                int moisJour = UI.askMonth(scanner);
-                int jour = UI.askDay(scanner);
+                int anneeJour = UI.askYear();
+                int moisJour = UI.askMonth();
+                int jour = UI.askDay();
 
                 LocalDateTime debutJour = LocalDateTime.of(anneeJour, moisJour, jour, 0, 0);
                 LocalDateTime finJour = debutJour.plusDays(1).minusSeconds(1);

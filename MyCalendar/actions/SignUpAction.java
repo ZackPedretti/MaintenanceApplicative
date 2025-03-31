@@ -5,8 +5,6 @@ import user.AuthManager;
 import user.UserName;
 import user.UserPassword;
 
-import java.util.Scanner;
-
 public class SignUpAction implements Action {
 
     AuthManager authManager;
@@ -17,10 +15,9 @@ public class SignUpAction implements Action {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
-        UserName userName = new UserName(UI.askUserName(scanner));
-        UserPassword userPassword = new UserPassword(UI.askUserPassword(scanner));
-        if (!userPassword.checkPassword(UI.askUserPasswordAgain(scanner))) {
+        UserName userName = new UserName(UI.askUserName());
+        UserPassword userPassword = new UserPassword(UI.askUserPassword());
+        if (!userPassword.checkPassword(UI.askUserPasswordAgain())) {
             UI.printIncorrectPasswordRepetition();
         } else {
             authManager.signUp(userName, userPassword);

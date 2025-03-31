@@ -19,8 +19,8 @@ public class SignInAction implements Action {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        UserName userName = new UserName(UI.askUserName(scanner));
-        UserPassword userPassword = new UserPassword(UI.askUserPassword(scanner));
+        UserName userName = new UserName(UI.askUserName());
+        UserPassword userPassword = new UserPassword(UI.askUserPassword());
         System.out.println(UserList.getUsers());
         authManager.signIn(userName, userPassword);
     }
