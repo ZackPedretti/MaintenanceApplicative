@@ -193,7 +193,7 @@ public class UI {
     }
 
     public static boolean askSignOut(){
-        System.out.println("Déconnexion ! Voulez-vous continuer ? (O/N)");
+        System.out.println("Déconnexion ! Voulez-vous continuer ? (Oui / Non)");
         return scanner.nextLine().trim().equalsIgnoreCase("oui");
     }
 
