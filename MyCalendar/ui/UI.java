@@ -183,7 +183,7 @@ public class UI {
         eventInfo.setEventTitle(new EventTitle(UI.askEventTitle()));
         eventInfo.setEventYear(new EventYear(UI.askYear()));
         eventInfo.setEventMonth(new EventMonth(UI.askMonth()));
-        eventInfo.setEventDay(new EventDay(UI.askYear()));
+        eventInfo.setEventDay(new EventDay(UI.askDay()));
         eventInfo.setEventStartHour(new EventStartHour(UI.askStartHour()));
         eventInfo.setEventStartMinute(new EventStartMinute(UI.askStartMinute()));
 
