@@ -19,17 +19,21 @@ public class AddPersonalAppointmentAction implements Action {
 
     @Override
     public void execute() {
-        EventTitle titre = new EventTitle(UI.askEventTitle());
-        EventYear year = new EventYear(UI.askYear());
-        EventMonth month = new EventMonth(UI.askMonth());
-        EventDay day = new EventDay(UI.askYear());
-        EventStartHour hour = new EventStartHour(UI.askStartHour());
-        EventStartMinute minute = new EventStartMinute(UI.askStartMinute());
-        EventDuration duration = new EventDuration(UI.askDuration());
+        EventInfo eventInfo = UI.askEventInfo(EventType.PERSONAL_APPOINTMENT);
 
-        calendar.addPersonalAppointment(titre, authManager.getSignedInUser(),
-                LocalDateTime.of(year.getYear(), month.getMonth(), day.getDay(), hour.getStartHour(), minute.getStartMinute()), duration);
+        calendar.addPersonalAppointment(
+                eventInfo.getEventTitle(),
+                authManager.getSignedInUser(),
+                LocalDateTime.of(
+                        eventInfo.getEventYear().getYear(),
+                        eventInfo.getEventMonth().getMonth(),
+                        eventInfo.getEventDay().getDay(),
+                        eventInfo.getEventStartHour().getStartHour(),
+                        eventInfo.getEventStartMinute().getStartMinute()
+                ),
+                eventInfo.getEventDuration()
+        );
 
-        System.out.println("Événement ajouté.");
+        UI.printEventAdded();
     }
 }

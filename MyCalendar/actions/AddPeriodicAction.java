@@ -19,17 +19,21 @@ public class AddPeriodicAction implements Action {
 
     @Override
     public void execute() {
-        EventTitle title = new EventTitle(UI.askEventTitle());
-        EventYear year = new EventYear(UI.askYear());
-        EventMonth month = new EventMonth(UI.askMonth());
-        EventDay day = new EventDay(UI.askYear());
-        EventStartHour hour = new EventStartHour(UI.askStartHour());
-        EventStartMinute minute = new EventStartMinute(UI.askStartMinute());
-        PeriodicFrequency frequency = new PeriodicFrequency(UI.askFrequency());
+        EventInfo eventInfo = UI.askEventInfo(EventType.PERIODIC);
 
-        calendar.addPeriodic(title, authManager.getSignedInUser(),
-                LocalDateTime.of(year.getYear(), month.getMonth(), day.getDay(), hour.getStartHour(), minute.getStartMinute()), new EventDuration(0),
-                frequency);
+        calendar.addPeriodic(
+                eventInfo.getEventTitle(),
+                authManager.getSignedInUser(),
+                LocalDateTime.of(
+                        eventInfo.getEventYear().getYear(),
+                        eventInfo.getEventMonth().getMonth(),
+                        eventInfo.getEventDay().getDay(),
+                        eventInfo.getEventStartHour().getStartHour(),
+                        eventInfo.getEventStartMinute().getStartMinute()
+                ),
+                new EventDuration(0),
+                eventInfo.getPeriodicFrequency()
+        );
 
         UI.printEventAdded();
     }

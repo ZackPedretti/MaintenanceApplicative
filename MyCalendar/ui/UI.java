@@ -1,7 +1,6 @@
 package ui;
 
-import events.Event;
-import events.Events;
+import events.*;
 import user.User;
 
 import java.util.Scanner;
@@ -175,6 +174,23 @@ public class UI {
             participants.append(", ").append(scanner.nextLine());
         }
         return participants.toString();
+    }
+
+    public static EventInfo askEventInfo(EventType eventType){
+        EventInfo eventInfo = new EventInfo();
+        eventInfo.setEventTitle(new EventTitle(UI.askEventTitle()));
+        eventInfo.setEventYear(new EventYear(UI.askYear()));
+        eventInfo.setEventMonth(new EventMonth(UI.askMonth()));
+        eventInfo.setEventDay(new EventDay(UI.askYear()));
+        eventInfo.setEventStartHour(new EventStartHour(UI.askStartHour()));
+        eventInfo.setEventStartMinute(new EventStartMinute(UI.askStartMinute()));
+
+        switch (eventType){
+            case MEETING -> eventInfo.setEventPlace(new Place(UI.askEventPlace()));
+            case PERIODIC -> eventInfo.setPeriodicFrequency(new PeriodicFrequency(UI.askFrequency()));
+        }
+
+        return eventInfo;
     }
 
     public static void printEventAdded(){

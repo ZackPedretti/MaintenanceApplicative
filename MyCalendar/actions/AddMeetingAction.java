@@ -19,21 +19,24 @@ public class AddMeetingAction implements Action {
 
     @Override
     public void execute() {
-        EventTitle title = new EventTitle(UI.askEventTitle());
-        EventYear year = new EventYear(UI.askYear());
-        EventMonth month = new EventMonth(UI.askMonth());
-        EventDay day = new EventDay(UI.askYear());
-        EventStartHour hour = new EventStartHour(UI.askStartHour());
-        EventStartMinute minute = new EventStartMinute(UI.askStartMinute());
-        EventDuration duration = new EventDuration(UI.askDuration());
-
-        Place lieu = new Place(UI.askEventPlace());
+        EventInfo eventInfo = UI.askEventInfo(EventType.PERSONAL_APPOINTMENT);
 
         StringBuilder participants = new StringBuilder(authManager.getSignedInUser().toString());
 
-        calendar.addMeeting(title, authManager.getSignedInUser(),
-                LocalDateTime.of(year.getYear(), month.getMonth(), day.getDay(), hour.getStartHour(), minute.getStartMinute()), duration,
-                lieu, new Participants(UI.askEventParticipants(participants)));
+        calendar.addMeeting(
+                eventInfo.getEventTitle(),
+                authManager.getSignedInUser(),
+                LocalDateTime.of(
+                        eventInfo.getEventYear().getYear(),
+                        eventInfo.getEventMonth().getMonth(),
+                        eventInfo.getEventDay().getDay(),
+                        eventInfo.getEventStartHour().getStartHour(),
+                        eventInfo.getEventStartMinute().getStartMinute()
+                ),
+                eventInfo.getEventDuration(),
+                eventInfo.getEventPlace(),
+                new Participants(UI.askEventParticipants(participants))
+        );
 
         UI.printEventAdded();
     }
