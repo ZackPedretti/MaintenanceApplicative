@@ -2,6 +2,7 @@ package actions.show_events;
 
 import actions.Action;
 import calendar.Calendar;
+import ui.UI;
 
 public class ShowAllEventsAction implements Action {
     Calendar calendar;
@@ -12,6 +13,6 @@ public class ShowAllEventsAction implements Action {
 
     @Override
     public void execute() {
-        calendar.showEvents();
+        UI.printEvents(calendar.events);
     }
 }

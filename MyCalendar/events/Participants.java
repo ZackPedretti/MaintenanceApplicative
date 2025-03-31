@@ -11,6 +11,12 @@ public class Participants {
 
     @Override
     public String toString() {
-        return participants.toString();
+        int size = participants.size();
+        if (size == 0) return "";
+        if (size == 1) return participants.get(0);
+        if (size == 2) return participants.get(0) + " et " + participants.get(1);
+
+        String lastParticipant = participants.remove(size - 1);
+        return String.join(", ", participants) + " et " + lastParticipant;
     }
 }

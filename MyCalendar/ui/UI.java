@@ -10,7 +10,7 @@ public class UI {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void printLoginMenu(){
+    public static void printLoginMenu() {
         AsciiArt.printAscii();
 
         System.out.println("1 - Se connecter");
@@ -18,7 +18,7 @@ public class UI {
         System.out.println("Choix : ");
     }
 
-    public static void printBaseMenu(User user){
+    public static void printBaseMenu(User user) {
         System.out.println("\nBonjour, " + user);
         System.out.println("=== Menu Gestionnaire d'Événements ===");
         System.out.println("1 - Voir les événements");
@@ -30,7 +30,7 @@ public class UI {
         System.out.print("Votre choix : ");
     }
 
-    public static void printEventMenu(){
+    public static void printEventMenu() {
         System.out.println("\n=== Menu de visualisation d'Événements ===");
         System.out.println("1 - Afficher TOUS les événements");
         System.out.println("2 - Afficher les événements d'un MOIS précis");
@@ -40,37 +40,37 @@ public class UI {
         System.out.print("Votre choix : ");
     }
 
-    public static String askUserName(){
+    public static String askUserName() {
         System.out.print("Nom d'utilisateur: ");
         return scanner.nextLine();
     }
 
-    public static String askUserPassword(){
+    public static String askUserPassword() {
         System.out.print("Mot de passe: ");
         return scanner.nextLine();
     }
 
-    public static String askUserPasswordAgain(){
+    public static String askUserPasswordAgain() {
         System.out.print("Répéter mot de passe: ");
         return scanner.nextLine();
     }
 
-    public static void printIncorrectPasswordRepetition(){
+    public static void printIncorrectPasswordRepetition() {
         System.out.println("Les mots de passes ne correspondent pas...");
     }
 
-    public static void printNoEventFound(){
+    public static void printNoEventFound() {
         System.out.println("Aucun événement trouvé pour cette période.");
     }
 
-    public static void printFoundEvents(Events events){
-        System.out.println("Événements trouvés : ");
+    public static void printFoundEvents(Events events) {
         for (Event e : events) {
             System.out.println("- " + e.description());
         }
     }
 
-    public static void printEvents(Events events){
+    public static void printEvents(Events events) {
+        System.out.println("\n=== Évènements ===");
         if (events.isEmpty()) {
             printNoEventFound();
         } else {
@@ -78,7 +78,7 @@ public class UI {
         }
     }
 
-    public static void printIncorrectInput(){
+    public static void printIncorrectInput() {
         System.out.println("Veuillez entrer un numéro correct.");
     }
 
@@ -159,26 +159,27 @@ public class UI {
         }
     }
 
-    public static String askEventTitle(){
+    public static String askEventTitle() {
         System.out.print("Titre de l'événement : ");
         return scanner.nextLine();
     }
 
-    public static String askEventPlace(){
+    public static String askEventPlace() {
         System.out.println("Lieu :");
         return scanner.nextLine();
     }
 
-    public static String askEventParticipants(StringBuilder participants){
+    public static String askEventParticipants(StringBuilder participants) {
         System.out.println("Ajouter un participant ? (oui / non)");
         while (scanner.nextLine().equals("oui")) {
             System.out.print("events.Participants : " + participants);
             participants.append(", ").append(scanner.nextLine());
+            System.out.println("Ajouter un participant ? (oui / non)");
         }
         return participants.toString();
     }
 
-    public static EventInfo askEventInfo(){
+    public static EventInfo askEventInfo() {
         EventInfo eventInfo = new EventInfo();
         eventInfo.setEventTitle(new EventTitle(UI.askEventTitle()));
         eventInfo.setEventYear(new EventYear(UI.askYear()));
@@ -190,30 +191,30 @@ public class UI {
         return eventInfo;
     }
 
-    public static EventInfo askPersonalAppointmentInfo(){
+    public static EventInfo askPersonalAppointmentInfo() {
         EventInfo eventInfo = askEventInfo();
         eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
         return eventInfo;
     }
 
-    public static EventInfo askMeetingInfo(){
+    public static EventInfo askMeetingInfo() {
         EventInfo eventInfo = askEventInfo();
         eventInfo.setEventPlace(new Place(UI.askEventPlace()));
         eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
         return eventInfo;
     }
 
-    public static EventInfo askPeriodicInfo(){
+    public static EventInfo askPeriodicInfo() {
         EventInfo eventInfo = askEventInfo();
         eventInfo.setPeriodicFrequency(new PeriodicFrequency(UI.askFrequency()));
         return eventInfo;
     }
 
-    public static void printEventAdded(){
+    public static void printEventAdded() {
         System.out.println("Événement ajouté.");
     }
 
-    public static int askFrequency(){
+    public static int askFrequency() {
         while (true) {
             System.out.print("Fréquence (en jours) : ");
             String input = scanner.nextLine();
@@ -224,12 +225,12 @@ public class UI {
         }
     }
 
-    public static boolean askSignOut(){
+    public static boolean askSignOut() {
         System.out.println("Déconnexion ! Voulez-vous continuer ? (Oui / Non)");
         return scanner.nextLine().trim().equalsIgnoreCase("oui");
     }
 
-    public static void printSignOutCanceled(){
+    public static void printSignOutCanceled() {
         System.out.println("Déconnexion annulée.");
     }
 }
