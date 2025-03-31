@@ -1,8 +1,8 @@
 package events;
 
-public class Duration {
+public class EventDuration {
     int minutes;
-    public Duration(int minutes) {
+    public EventDuration(int minutes) {
         this.minutes = minutes;
     }
 

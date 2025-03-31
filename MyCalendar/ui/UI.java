@@ -7,7 +7,7 @@ import user.User;
 import java.util.Scanner;
 
 public class UI {
-    public static void printBaseMenu(){
+    public static void printLoginMenu(){
         AsciiArt.printAscii();
 
         System.out.println("1 - Se connecter");
@@ -15,7 +15,7 @@ public class UI {
         System.out.println("Choix : ");
     }
 
-    public static void printActionMenu(User user){
+    public static void printBaseMenu(User user){
         System.out.println("\nBonjour, " + user);
         System.out.println("=== Menu Gestionnaire d'Événements ===");
         System.out.println("1 - Voir les événements");
@@ -66,7 +66,59 @@ public class UI {
         }
     }
 
+    public static void printEvents(Events events){
+        if (events.isEmpty()) {
+            printNoEventFound();
+        } else {
+            printFoundEvents(events);
+        }
+    }
+
     public static void printIncorrectInput(){
         System.out.println("Veuillez entrer un numéro correct.");
+    }
+
+    public static int askYear(Scanner scanner) {
+        while (true) {
+            System.out.print("Entrez l'année (AAAA) : ");
+            String input = scanner.nextLine();
+            if (input.matches("\\d{4}")) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static int askMonth(Scanner scanner) {
+        while (true) {
+            System.out.print("Entrez le mois (1-12) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^(0?[1-9]|1[0-2])$")) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static int askWeek(Scanner scanner) {
+        while (true) {
+            System.out.print("Entrez le numéro de semaine (1-52) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^(0?[1-9]|[1-4][0-9]|5[0-2])$")) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static int askDay(Scanner scanner) {
+        while (true) {
+            System.out.print("Entrez le jour (1-31) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^(0?[1-9]|[12][0-9]|3[01])$")) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
     }
 }

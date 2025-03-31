@@ -18,7 +18,7 @@ public class SignInMenuAction implements Action {
         Scanner scanner = new Scanner(System.in);
         while (!authManager.isSignedIn()) {
 
-            UI.printBaseMenu();
+            UI.printLoginMenu();
 
             try{
                 actions[Integer.parseInt(scanner.nextLine())].execute();

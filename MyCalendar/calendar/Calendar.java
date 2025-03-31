@@ -1,27 +1,27 @@
-package calender;
+package calendar;
 
 import events.*;
 import user.User;
 
 import java.time.LocalDateTime;
 
-public class CalendarManager {
+public class Calendar {
     public Events events;
 
-    public CalendarManager() {
+    public Calendar() {
         this.events = new Events();
     }
 
-    public void addMeeting(EventTitle title, User owner, LocalDateTime dateDebut, Duration dureeMinutes,
+    public void addMeeting(EventTitle title, User owner, LocalDateTime dateDebut, EventDuration dureeMinutes,
                            Place lieu, Participants participants){
         events.addEvent(new Meeting(title, owner, dateDebut, dureeMinutes, lieu, participants));
     }
 
-    public void addPeriodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes, PeriodicFrequency frequenceJours){
+    public void addPeriodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, EventDuration dureeMinutes, PeriodicFrequency frequenceJours){
         events.addEvent(new Periodic(title, proprietaire, dateDebut, dureeMinutes, frequenceJours));
     }
 
-    public void addPersonalAppointment(EventTitle title, User proprietaire, LocalDateTime dateDebut, Duration dureeMinutes){
+    public void addPersonalAppointment(EventTitle title, User proprietaire, LocalDateTime dateDebut, EventDuration dureeMinutes){
         events.addEvent(new PersonalAppointment(title, proprietaire, dateDebut, dureeMinutes));
     }
 
