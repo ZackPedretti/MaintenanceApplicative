@@ -5,17 +5,17 @@ import user.User;
 import java.time.LocalDateTime;
 
 public class Periodic extends Event {
-    PeriodicFrequency frequenceJours;
+    PeriodicFrequency frequency;
     public Periodic(EventTitle title, User owner, LocalDateTime startingDate, EventDuration duration, PeriodicFrequency frequency) {
         super(title, owner, startingDate, duration);
-        this.frequenceJours = frequency;
+        this.frequency = frequency;
     }
 
     public String description() {
-        return "Événement périodique : " + title + " tous les " + frequenceJours + " jours";
+        return "Événement périodique : " + title + " tous les " + frequency + " jours";
     }
 
-    public int getFrequenceJours() {
-        return frequenceJours.getFrequency();
+    public int getFrequency() {
+        return frequency.getFrequency();
     }
 }

@@ -5,8 +5,8 @@ import user.User;
 import java.time.LocalDateTime;
 
 public class PersonalAppointment extends Event {
-    public PersonalAppointment(EventTitle title, User proprietaire, LocalDateTime dateDebut, EventDuration dureeMinutes) {
-        super(title, proprietaire, dateDebut, dureeMinutes);
+    public PersonalAppointment(EventTitle title, User owner, LocalDateTime startDate, EventDuration duration) {
+        super(title, owner, startDate, duration);
     }
 
     public String description(){

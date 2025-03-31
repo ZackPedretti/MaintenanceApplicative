@@ -1,5 +1,5 @@
 package actions;
 
 public interface Action {
-    public void execute();
+    void execute();
 }

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Events implements Iterable<Event> {
-    private List<Event> events;
+    private final List<Event> events;
 
     public Events() {
         events = new ArrayList<>();

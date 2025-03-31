@@ -6,8 +6,6 @@ import user.UserList;
 import user.UserName;
 import user.UserPassword;
 
-import java.util.Scanner;
-
 public class SignInAction implements Action {
 
     AuthManager authManager;
@@ -18,7 +16,6 @@ public class SignInAction implements Action {
 
     @Override
     public void execute() {
-        Scanner scanner = new Scanner(System.in);
         UserName userName = new UserName(UI.askUserName());
         UserPassword userPassword = new UserPassword(UI.askUserPassword());
         System.out.println(UserList.getUsers());

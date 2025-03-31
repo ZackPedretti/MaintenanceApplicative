@@ -6,7 +6,7 @@ import java.util.List;
 public class Participants {
     List<String> participants;
     public Participants(String participantString) {
-        participants = new ArrayList<String>(List.of(participantString.split(",")));
+        participants = new ArrayList<>(List.of(participantString.split(",")));
     }
 
     @Override

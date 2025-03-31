@@ -12,17 +12,17 @@ public class Calendar {
         this.events = new Events();
     }
 
-    public void addMeeting(EventTitle title, User owner, LocalDateTime dateDebut, EventDuration dureeMinutes,
+    public void addMeeting(EventTitle title, User owner, LocalDateTime startDate, EventDuration duration,
                            Place lieu, Participants participants){
-        events.addEvent(new Meeting(title, owner, dateDebut, dureeMinutes, lieu, participants));
+        events.addEvent(new Meeting(title, owner, startDate, duration, lieu, participants));
     }
 
-    public void addPeriodic(EventTitle title, User proprietaire, LocalDateTime dateDebut, EventDuration dureeMinutes, PeriodicFrequency frequenceJours){
-        events.addEvent(new Periodic(title, proprietaire, dateDebut, dureeMinutes, frequenceJours));
+    public void addPeriodic(EventTitle title, User owner, LocalDateTime startDate, EventDuration duration, PeriodicFrequency frequency){
+        events.addEvent(new Periodic(title, owner, startDate, duration, frequency));
     }
 
-    public void addPersonalAppointment(EventTitle title, User proprietaire, LocalDateTime dateDebut, EventDuration dureeMinutes){
-        events.addEvent(new PersonalAppointment(title, proprietaire, dateDebut, dureeMinutes));
+    public void addPersonalAppointment(EventTitle title, User owner, LocalDateTime startDate, EventDuration duration){
+        events.addEvent(new PersonalAppointment(title, owner, startDate, duration));
     }
 
     public Events eventsWithinPeriod(LocalDateTime start, LocalDateTime end) {
@@ -35,7 +35,7 @@ public class Calendar {
                         result.addEvent(e);
                         break;
                     }
-                    temp = temp.plusDays(((Periodic) e).getFrequenceJours());
+                    temp = temp.plusDays(((Periodic) e).getFrequency());
                 }
             } else if (!e.startingDate.isBefore(start) && !e.startingDate.isAfter(end)) {
                 result.addEvent(e);

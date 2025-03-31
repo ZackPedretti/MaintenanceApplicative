@@ -186,7 +186,11 @@ public class UI {
         eventInfo.setEventStartMinute(new EventStartMinute(UI.askStartMinute()));
 
         switch (eventType){
-            case MEETING -> eventInfo.setEventPlace(new Place(UI.askEventPlace()));
+            case MEETING -> {
+                eventInfo.setEventPlace(new Place(UI.askEventPlace()));
+                eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
+            }
+            case PERSONAL_APPOINTMENT -> eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
             case PERIODIC -> eventInfo.setPeriodicFrequency(new PeriodicFrequency(UI.askFrequency()));
         }
 

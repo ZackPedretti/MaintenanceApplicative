@@ -5,8 +5,4 @@ public class EventDuration {
     public EventDuration(int minutes) {
         this.minutes = minutes;
     }
-
-    public int getMinutes() {
-        return minutes;
-    }
 }
