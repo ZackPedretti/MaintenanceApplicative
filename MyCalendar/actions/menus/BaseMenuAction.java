@@ -1,6 +1,7 @@
 package actions.menus;
 
 import actions.Action;
+import actions.add_events.AddTaskAction;
 import actions.show_events.ShowEventsAction;
 import actions.auth.SignOutAction;
 import actions.add_events.AddMeetingAction;
@@ -26,7 +27,7 @@ public class BaseMenuAction implements Action {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
 
-        Action[] actions = new Action[] {(new ShowEventsAction(calendar)), (new AddPersonalAppointmentAction(calendar, authManager)), (new AddMeetingAction(calendar, authManager)), (new AddPeriodicAction(calendar, authManager)), (new SignOutAction(authManager))};
+        Action[] actions = new Action[] {(new ShowEventsAction(calendar)), (new AddPersonalAppointmentAction(calendar, authManager)), (new AddMeetingAction(calendar, authManager)), (new AddPeriodicAction(calendar, authManager)), (new AddTaskAction(calendar, authManager)) , (new SignOutAction(authManager))};
 
         while (authManager.isSignedIn()) {
             UI.printBaseMenu(authManager.getSignedInUser());

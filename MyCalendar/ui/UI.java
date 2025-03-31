@@ -25,7 +25,8 @@ public class UI {
         System.out.println("2 - Ajouter un rendez-vous perso");
         System.out.println("3 - Ajouter une réunion");
         System.out.println("4 - Ajouter un évènement périodique");
-        System.out.println("5 - Se déconnecter");
+        System.out.println("5 - Ajouter une tâche");
+        System.out.println("6 - Se déconnecter");
         System.out.print("Votre choix : ");
     }
 

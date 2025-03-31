@@ -29,6 +29,10 @@ public class Calendar {
         events.addEvent(new PersonalAppointment(title, owner, startDate, duration));
     }
 
+    public void addTask(EventTitle title, User owner, LocalDateTime startDate, EventDuration duration){
+        events.addEvent(new Task(title, owner, startDate, duration));
+    }
+
     public Events eventsWithinPeriod(LocalDateTime start, LocalDateTime end) {
         Events result = new Events();
         for (Event e : events) {
