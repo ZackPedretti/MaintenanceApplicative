@@ -19,7 +19,7 @@ public class AddMeetingAction implements Action {
 
     @Override
     public void execute() {
-        EventInfo eventInfo = UI.askEventInfo(EventType.PERSONAL_APPOINTMENT);
+        EventInfo eventInfo = UI.askPersonalAppointmentInfo();
 
         StringBuilder participants = new StringBuilder(authManager.getSignedInUser().toString());
 

@@ -19,7 +19,7 @@ public class AddPersonalAppointmentAction implements Action {
 
     @Override
     public void execute() {
-        EventInfo eventInfo = UI.askEventInfo(EventType.PERSONAL_APPOINTMENT);
+        EventInfo eventInfo = UI.askPersonalAppointmentInfo();
 
         calendar.addPersonalAppointment(
                 eventInfo.getEventTitle(),

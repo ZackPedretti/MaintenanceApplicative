@@ -19,7 +19,7 @@ public class AddPeriodicAction implements Action {
 
     @Override
     public void execute() {
-        EventInfo eventInfo = UI.askEventInfo(EventType.PERIODIC);
+        EventInfo eventInfo = UI.askPeriodicInfo();
 
         calendar.addPeriodic(
                 eventInfo.getEventTitle(),

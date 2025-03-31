@@ -176,7 +176,7 @@ public class UI {
         return participants.toString();
     }
 
-    public static EventInfo askEventInfo(EventType eventType){
+    public static EventInfo askEventInfo(){
         EventInfo eventInfo = new EventInfo();
         eventInfo.setEventTitle(new EventTitle(UI.askEventTitle()));
         eventInfo.setEventYear(new EventYear(UI.askYear()));
@@ -185,15 +185,25 @@ public class UI {
         eventInfo.setEventStartHour(new EventStartHour(UI.askStartHour()));
         eventInfo.setEventStartMinute(new EventStartMinute(UI.askStartMinute()));
 
-        switch (eventType){
-            case MEETING -> {
-                eventInfo.setEventPlace(new Place(UI.askEventPlace()));
-                eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
-            }
-            case PERSONAL_APPOINTMENT -> eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
-            case PERIODIC -> eventInfo.setPeriodicFrequency(new PeriodicFrequency(UI.askFrequency()));
-        }
+        return eventInfo;
+    }
 
+    public static EventInfo askPersonalAppointmentInfo(){
+        EventInfo eventInfo = askEventInfo();
+        eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
+        return eventInfo;
+    }
+
+    public static EventInfo askMeetingInfo(){
+        EventInfo eventInfo = askEventInfo();
+        eventInfo.setEventPlace(new Place(UI.askEventPlace()));
+        eventInfo.setEventDuration(new EventDuration(UI.askDuration()));
+        return eventInfo;
+    }
+
+    public static EventInfo askPeriodicInfo(){
+        EventInfo eventInfo = askEventInfo();
+        eventInfo.setPeriodicFrequency(new PeriodicFrequency(UI.askFrequency()));
         return eventInfo;
     }
 
