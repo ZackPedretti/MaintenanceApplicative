@@ -125,7 +125,7 @@ public class UI {
         }
     }
 
-    public static int askBeginHour() {
+    public static int askStartHour() {
         while (true) {
             System.out.print("Heure début (0-23) : ");
             String input = scanner.nextLine();
@@ -136,7 +136,7 @@ public class UI {
         }
     }
 
-    public static int askBeginMinute() {
+    public static int askStartMinute() {
         while (true) {
             System.out.print("Minute début (0-59) : ");
             String input = scanner.nextLine();

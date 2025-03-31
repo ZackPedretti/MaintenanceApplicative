@@ -1,9 +1,7 @@
 package actions;
 
 import calendar.Calendar;
-import events.EventDuration;
-import events.EventTitle;
-import events.PeriodicFrequency;
+import events.*;
 import ui.UI;
 import user.AuthManager;
 
@@ -22,15 +20,15 @@ public class AddPeriodicAction implements Action {
     @Override
     public void execute() {
         EventTitle title = new EventTitle(UI.askEventTitle());
-        int year = UI.askYear();
-        int month = UI.askMonth();
-        int day = UI.askDay();
-        int hour = UI.askBeginHour();
-        int minute = UI.askBeginMinute();
+        EventYear year = new EventYear(UI.askYear());
+        EventMonth month = new EventMonth(UI.askMonth());
+        EventDay day = new EventDay(UI.askYear());
+        EventStartHour hour = new EventStartHour(UI.askStartHour());
+        EventStartMinute minute = new EventStartMinute(UI.askStartMinute());
         PeriodicFrequency frequency = new PeriodicFrequency(UI.askFrequency());
 
         calendar.addPeriodic(title, authManager.getSignedInUser(),
-                LocalDateTime.of(year, month, day, hour, minute), new EventDuration(0),
+                LocalDateTime.of(year.getYear(), month.getMonth(), day.getDay(), hour.getStartHour(), minute.getStartMinute()), new EventDuration(0),
                 frequency);
 
         UI.printEventAdded();

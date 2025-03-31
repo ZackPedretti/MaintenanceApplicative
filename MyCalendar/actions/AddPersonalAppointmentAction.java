@@ -1,8 +1,7 @@
 package actions;
 
 import calendar.Calendar;
-import events.EventDuration;
-import events.EventTitle;
+import events.*;
 import ui.UI;
 import user.AuthManager;
 
@@ -21,15 +20,15 @@ public class AddPersonalAppointmentAction implements Action {
     @Override
     public void execute() {
         EventTitle titre = new EventTitle(UI.askEventTitle());
-        int year = UI.askYear();
-        int month = UI.askMonth();
-        int day = UI.askYear();
-        int hour = UI.askBeginHour();
-        int minute = UI.askBeginMinute();
+        EventYear year = new EventYear(UI.askYear());
+        EventMonth month = new EventMonth(UI.askMonth());
+        EventDay day = new EventDay(UI.askYear());
+        EventStartHour hour = new EventStartHour(UI.askStartHour());
+        EventStartMinute minute = new EventStartMinute(UI.askStartMinute());
         EventDuration duration = new EventDuration(UI.askDuration());
 
         calendar.addPersonalAppointment(titre, authManager.getSignedInUser(),
-                LocalDateTime.of(year, month, day, hour, minute), duration);
+                LocalDateTime.of(year.getYear(), month.getMonth(), day.getDay(), hour.getStartHour(), minute.getStartMinute()), duration);
 
         System.out.println("Événement ajouté.");
     }

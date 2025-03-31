@@ -1,6 +1,8 @@
 package actions;
 
 import calendar.Calendar;
+import events.EventMonth;
+import events.EventYear;
 import ui.UI;
 
 import java.time.LocalDateTime;
@@ -15,12 +17,12 @@ public class ShowMonthEventsAction implements Action {
 
     @Override
     public void execute() {
-        int year = UI.askYear();
-        int month = UI.askMonth();
+        EventYear year = new EventYear(UI.askYear());
+        EventMonth month = new EventMonth(UI.askMonth());
 
-        LocalDateTime debutMois = LocalDateTime.of(year, month, 1, 0, 0);
-        LocalDateTime finMois = debutMois.plusMonths(1).minusSeconds(1);
+        LocalDateTime monthStart = LocalDateTime.of(year.getYear(), month.getMonth(), 1, 0, 0);
+        LocalDateTime monthEnd = monthStart.plusMonths(1).minusSeconds(1);
 
-        UI.printEvents(calendar.eventsWithinPeriod(debutMois, finMois));
+        UI.printEvents(calendar.eventsWithinPeriod(monthStart, monthEnd));
     }
 }

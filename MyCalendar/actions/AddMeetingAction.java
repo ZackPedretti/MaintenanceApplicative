@@ -1,10 +1,7 @@
 package actions;
 
 import calendar.Calendar;
-import events.EventDuration;
-import events.EventTitle;
-import events.Participants;
-import events.Place;
+import events.*;
 import ui.UI;
 import user.AuthManager;
 
@@ -22,20 +19,20 @@ public class AddMeetingAction implements Action {
 
     @Override
     public void execute() {
-        EventTitle titre2 = new EventTitle(UI.askEventTitle());
-        int year = UI.askYear();
-        int month = UI.askMonth();
-        int day = UI.askDay();
-        int hour = UI.askBeginHour();
-        int minute = UI.askBeginMinute();
+        EventTitle title = new EventTitle(UI.askEventTitle());
+        EventYear year = new EventYear(UI.askYear());
+        EventMonth month = new EventMonth(UI.askMonth());
+        EventDay day = new EventDay(UI.askYear());
+        EventStartHour hour = new EventStartHour(UI.askStartHour());
+        EventStartMinute minute = new EventStartMinute(UI.askStartMinute());
         EventDuration duration = new EventDuration(UI.askDuration());
 
         Place lieu = new Place(UI.askEventPlace());
 
         StringBuilder participants = new StringBuilder(authManager.getSignedInUser().toString());
 
-        calendar.addMeeting(titre2, authManager.getSignedInUser(),
-                LocalDateTime.of(year, month, day, hour, minute), duration,
+        calendar.addMeeting(title, authManager.getSignedInUser(),
+                LocalDateTime.of(year.getYear(), month.getMonth(), day.getDay(), hour.getStartHour(), minute.getStartMinute()), duration,
                 lieu, new Participants(UI.askEventParticipants(participants)));
 
         UI.printEventAdded();
