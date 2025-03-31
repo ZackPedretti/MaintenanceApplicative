@@ -65,4 +65,8 @@ public class UI {
             System.out.println("- " + e.description());
         }
     }
+
+    public static void printIncorrectInput(){
+        System.out.println("Veuillez entrer un numéro correct.");
+    }
 }

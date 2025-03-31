@@ -1,6 +1,7 @@
 import calender.CalendarManager;
 import events.*;
 import ui.UI;
+import user.AuthManager;
 import user.User;
 import user.UserList;
 import events.Duration;
@@ -18,10 +19,11 @@ public class Main {
         boolean continuer = true;
 
         List<User> users = UserList.getUsers();
+        AuthManager authManager = new AuthManager();
 
         while (true) {
 
-            (new LogInUserAction(user)).execute();
+            (new SignInMenuAction(authManager)).execute();
 
             while (continuer && user != null) {
                 UI.printActionMenu(user);
