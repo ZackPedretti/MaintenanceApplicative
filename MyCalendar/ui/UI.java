@@ -180,4 +180,24 @@ public class UI {
     public static void printEventAdded(){
         System.out.println("Événement ajouté.");
     }
+
+    public static int askFrequency(){
+        while (true) {
+            System.out.print("Fréquence (en jours) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^\\d+$") && Integer.parseInt(input) > 0) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static boolean askSignOut(){
+        System.out.println("Déconnexion ! Voulez-vous continuer ? (O/N)");
+        return scanner.nextLine().trim().equalsIgnoreCase("oui");
+    }
+
+    public static void printSignOutCanceled(){
+        System.out.println("Déconnexion annulée.");
+    }
 }

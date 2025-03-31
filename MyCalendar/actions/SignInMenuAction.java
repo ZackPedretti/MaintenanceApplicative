@@ -21,7 +21,7 @@ public class SignInMenuAction implements Action {
             UI.printLoginMenu();
 
             try{
-                actions[Integer.parseInt(scanner.nextLine())].execute();
+                actions[Integer.parseInt(scanner.nextLine())-1].execute();
             }
             catch(NumberFormatException | ArrayIndexOutOfBoundsException _) {
                 UI.printIncorrectInput();

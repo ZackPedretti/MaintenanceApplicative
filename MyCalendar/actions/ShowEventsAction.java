@@ -20,7 +20,7 @@ public class ShowEventsAction implements Action {
         Action[] actions = {(new ShowAllEventsAction(calendar)), (new ShowMonthEventsAction(calendar)), (new ShowWeekEventsAction(calendar)), (new ShowDayEventsAction(calendar)), (new BackAction())};
 
         try{
-            actions[Integer.parseInt(scanner.nextLine())].execute();
+            actions[Integer.parseInt(scanner.nextLine())-1].execute();
         }
         catch(NumberFormatException | ArrayIndexOutOfBoundsException _) {
             UI.printIncorrectInput();
