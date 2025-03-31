@@ -1,5 +1,11 @@
-package actions;
+package actions.menus;
 
+import actions.Action;
+import actions.show_events.ShowEventsAction;
+import actions.auth.SignOutAction;
+import actions.add_events.AddMeetingAction;
+import actions.add_events.AddPeriodicAction;
+import actions.add_events.AddPersonalAppointmentAction;
 import calendar.Calendar;
 import ui.UI;
 import user.AuthManager;

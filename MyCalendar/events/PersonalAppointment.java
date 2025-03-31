@@ -1,5 +1,7 @@
 package events;
 
+import events.units.EventDuration;
+import events.units.EventTitle;
 import user.User;
 
 import java.time.LocalDateTime;

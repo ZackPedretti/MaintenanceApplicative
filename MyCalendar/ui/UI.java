@@ -1,6 +1,7 @@
 package ui;
 
 import events.*;
+import events.units.*;
 import user.User;
 
 import java.util.Scanner;

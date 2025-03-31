@@ -1,5 +1,6 @@
-package actions;
+package actions.auth;
 
+import actions.Action;
 import ui.UI;
 import user.AuthManager;
 

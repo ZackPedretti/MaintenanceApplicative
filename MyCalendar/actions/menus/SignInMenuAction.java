@@ -1,4 +1,7 @@
-package actions;
+package actions.menus;
+import actions.Action;
+import actions.auth.SignInAction;
+import actions.auth.SignUpAction;
 import ui.UI;
 import user.*;
 import java.util.Scanner;

@@ -1,15 +1,17 @@
-package actions;
+package actions.auth;
 
+import actions.Action;
 import ui.UI;
 import user.AuthManager;
+import user.UserList;
 import user.UserName;
 import user.UserPassword;
 
-public class SignUpAction implements Action {
+public class SignInAction implements Action {
 
     AuthManager authManager;
 
-    public SignUpAction(AuthManager authManager) {
+    public SignInAction(AuthManager authManager) {
         this.authManager = authManager;
     }
 
@@ -17,10 +19,7 @@ public class SignUpAction implements Action {
     public void execute() {
         UserName userName = new UserName(UI.askUserName());
         UserPassword userPassword = new UserPassword(UI.askUserPassword());
-        if (!userPassword.checkPassword(UI.askUserPasswordAgain())) {
-            UI.printIncorrectPasswordRepetition();
-        } else {
-            authManager.signUp(userName, userPassword);
-        }
+        System.out.println(UserList.getUsers());
+        authManager.signIn(userName, userPassword);
     }
 }

@@ -1,9 +1,10 @@
-package actions;
+package actions.show_events;
 
+import actions.Action;
 import calendar.Calendar;
-import events.EventDay;
-import events.EventMonth;
-import events.EventYear;
+import events.units.EventDay;
+import events.units.EventMonth;
+import events.units.EventYear;
 import ui.UI;
 
 import java.time.LocalDateTime;

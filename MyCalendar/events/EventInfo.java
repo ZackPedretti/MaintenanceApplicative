@@ -1,5 +1,7 @@
 package events;
 
+import events.units.*;
+
 public class EventInfo {
     EventTitle eventTitle;
     EventYear eventYear;

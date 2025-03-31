@@ -1,6 +1,7 @@
+import actions.menus.BaseMenuAction;
+import actions.menus.SignInMenuAction;
 import calendar.Calendar;
 import user.AuthManager;
-import actions.*;
 
 public class Main {
     public static void main(String[] args) {

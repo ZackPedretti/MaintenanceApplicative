@@ -1,5 +1,6 @@
-package actions;
+package actions.add_events;
 
+import actions.Action;
 import calendar.Calendar;
 import events.*;
 import ui.UI;
@@ -7,21 +8,23 @@ import user.AuthManager;
 
 import java.time.LocalDateTime;
 
-public class AddPeriodicAction implements Action {
+public class AddMeetingAction implements Action {
 
     Calendar calendar;
     AuthManager authManager;
 
-    public AddPeriodicAction(Calendar calendar, AuthManager authManager) {
+    public AddMeetingAction(Calendar calendar, AuthManager authManager) {
         this.calendar = calendar;
         this.authManager = authManager;
     }
 
     @Override
     public void execute() {
-        EventInfo eventInfo = UI.askPeriodicInfo();
+        EventInfo eventInfo = UI.askMeetingInfo();
 
-        calendar.addPeriodic(
+        StringBuilder participants = new StringBuilder(authManager.getSignedInUser().toString());
+
+        calendar.addMeeting(
                 eventInfo.getEventTitle(),
                 authManager.getSignedInUser(),
                 LocalDateTime.of(
@@ -31,8 +34,9 @@ public class AddPeriodicAction implements Action {
                         eventInfo.getEventStartHour().getStartHour(),
                         eventInfo.getEventStartMinute().getStartMinute()
                 ),
-                new EventDuration(0),
-                eventInfo.getPeriodicFrequency()
+                eventInfo.getEventDuration(),
+                eventInfo.getEventPlace(),
+                new Participants(UI.askEventParticipants(participants))
         );
 
         UI.printEventAdded();

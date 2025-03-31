@@ -1,6 +1,10 @@
 package calendar;
 
 import events.*;
+import events.units.EventDuration;
+import events.units.EventTitle;
+import events.units.PeriodicFrequency;
+import events.units.Place;
 import user.User;
 
 import java.time.LocalDateTime;

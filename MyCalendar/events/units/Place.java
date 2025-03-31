@@ -1,4 +1,4 @@
-package events;
+package events.units;
 
 public class Place {
     public String place;

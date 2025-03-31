@@ -1,4 +1,4 @@
-package events;
+package events.units;
 
 public class EventDay {
     int day;

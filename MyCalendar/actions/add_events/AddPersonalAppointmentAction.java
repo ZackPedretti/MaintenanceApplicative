@@ -1,5 +1,6 @@
-package actions;
+package actions.add_events;
 
+import actions.Action;
 import calendar.Calendar;
 import events.*;
 import ui.UI;
