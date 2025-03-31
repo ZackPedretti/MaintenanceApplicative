@@ -32,32 +32,12 @@ public class BaseMenuAction implements Action {
                     break;
 
                 case "2":
-                    // Ajout simplifié d'un RDV personnel
-                    System.out.print("Titre de l'événement : ");
-                    EventTitle titre = new EventTitle(scanner.nextLine());
-                    System.out.print("Année (AAAA) : ");
-                    int annee = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Mois (1-12) : ");
-                    int moisRdv = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Jour (1-31) : ");
-                    int jourRdv = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Heure début (0-23) : ");
-                    int heure = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Minute début (0-59) : ");
-                    int minute = Integer.parseInt(scanner.nextLine());
-                    System.out.print("Durée (en minutes) : ");
-                    EventDuration duree = new EventDuration(Integer.parseInt(scanner.nextLine()));
-
-                    calendar.addPersonalAppointment(titre, authManager.getSignedInUser(),
-                            LocalDateTime.of(annee, moisRdv, jourRdv, heure, minute), duree);
-
-                    System.out.println("Événement ajouté.");
+                    (new AddPersonalAppointmentAction(calendar, authManager)).execute();
                     break;
 
                 case "3":
                     // Ajout simplifié d'une réunion
-                    System.out.print("Titre de l'événement : ");
-                    EventTitle titre2 = new EventTitle(scanner.nextLine());
+                    EventTitle titre2 = new EventTitle(UI.askEventTitle());
                     System.out.print("Année (AAAA) : ");
                     int annee2 = Integer.parseInt(scanner.nextLine());
                     System.out.print("Mois (1-12) : ");

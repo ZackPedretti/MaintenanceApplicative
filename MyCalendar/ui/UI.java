@@ -124,4 +124,43 @@ public class UI {
             printIncorrectInput();
         }
     }
+
+    public static int askBeginHour() {
+        while (true) {
+            System.out.print("Heure début (0-23) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^(0?[0-9]|1[0-9]|2[0-3])$")) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static int askBeginMinute() {
+        while (true) {
+            System.out.print("Minute début (0-59) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^(0?[0-9]|[1-5][0-9])$")) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static int askDuration() {
+        while (true) {
+            System.out.print("Durée (en minutes) : ");
+            String input = scanner.nextLine();
+            if (input.matches("^\\d+$") && Integer.parseInt(input) > 0) {
+                return Integer.parseInt(input);
+            }
+            printIncorrectInput();
+        }
+    }
+
+    public static String askEventTitle(){
+        System.out.print("Titre de l'événement : ");
+        return scanner.nextLine();
+    }
+
 }
