@@ -8,7 +8,7 @@ import java.time.temporal.WeekFields;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class ShowEventsAction implements Action{
+public class ShowEventsAction implements Action {
 
     Calendar calendar;
 
@@ -25,21 +25,15 @@ public class ShowEventsAction implements Action{
         String choix = scanner.nextLine();
 
         switch (choix) {
-            case "1":
+            case "1": // Show all events
                 (new ShowAllEventsAction(calendar)).execute();
                 break;
 
-            case "2":
-                int year = UI.askYear();
-                int month = UI.askMonth();
-
-                LocalDateTime debutMois = LocalDateTime.of(year, month, 1, 0, 0);
-                LocalDateTime finMois = debutMois.plusMonths(1).minusSeconds(1);
-
-                UI.printEvents(calendar.eventsWithinPeriod(debutMois, finMois));
+            case "2": // Show events of a month
+                (new ShowMonthEventsAction(calendar)).execute();
                 break;
 
-            case "3":
+            case "3": // Show events of a week
                 int anneeSemaine = UI.askYear();
                 int semaine = UI.askWeek();
 
@@ -53,7 +47,7 @@ public class ShowEventsAction implements Action{
                 UI.printEvents(calendar.eventsWithinPeriod(debutSemaine, finSemaine));
                 break;
 
-            case "4":
+            case "4": // Show events of a day
                 int anneeJour = UI.askYear();
                 int moisJour = UI.askMonth();
                 int jour = UI.askDay();
