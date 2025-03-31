@@ -36,8 +36,7 @@ public class BaseMenuAction implements Action {
                     break;
 
                 case "3":
-                    // Ajout simplifié d'une réunion
-
+                    (new AddMeetingAction(calendar, authManager)).execute();
                     break;
 
                 case "4":
