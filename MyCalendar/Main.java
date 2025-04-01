@@ -1,7 +1,7 @@
-import actions.menus.BaseMenuAction;
-import actions.menus.SignInMenuAction;
-import calendar.Calendar;
-import user.AuthManager;
+import fr.zack.calendarapp.actions.menus.BaseMenuAction;
+import fr.zack.calendarapp.actions.menus.SignInMenuAction;
+import fr.zack.calendarapp.calendar.Calendar;
+import fr.zack.calendarapp.user.AuthManager;
 
 public class Main {
     public static void main(String[] args) {
