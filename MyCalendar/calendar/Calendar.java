@@ -51,10 +51,4 @@ public class Calendar {
         }
         return result;
     }
-
-    public void showEvents() {
-        for (Event e : events) {
-            System.out.println(e.description());
-        }
-    }
 }
