@@ -23,4 +23,8 @@ public class Events implements Iterable<Event> {
     public boolean isEmpty() {
         return events.isEmpty();
     }
+
+    public int size() {
+        return events.size();
+    }
 }
